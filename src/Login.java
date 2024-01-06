@@ -1,10 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class Login extends JFrame {
-
     public Login() {
         setTitle("Login to LearnSphere");
         setSize(1236, 769);
@@ -25,27 +21,69 @@ public class Login extends JFrame {
         JTextField email = new JTextField();
         email.setBorder(null);
         email.setBounds(459, 190, 250, 30); // Adjust the position and size
-        panel.add(email);
 
         JPasswordField password = new JPasswordField();
         password.setBorder(null);
         password.setBounds(465, 250, 250, 30); // Adjust the position and size
-        panel.add(password);
+
 
         JButton login = new JButton();
         login.setBounds(490,340,225,30);
         login.setOpaque(false);
         login.setContentAreaFilled(false);
         login.setBorderPainted(false);
-        login.addActionListener(e -> System.out.println("Login Clicked"));
+        login.addActionListener(e -> {
+            String enteredEmail = email.getText();
+            char[] enteredPassword = password.getPassword();
+
+            String passwordStr = new String(enteredPassword);
+
+            System.out.println("Login Clicked");
+            System.out.println("Email: " + enteredEmail);
+            System.out.println("Password: " + passwordStr);
+
+            DatabaseConnectivity db = new DatabaseConnectivity();
+            if(db.authUser(enteredEmail,passwordStr)){
+
+                JOptionPane.showMessageDialog(panel,"Login Successfully!","Success", JOptionPane.INFORMATION_MESSAGE);
+
+                ((Window) SwingUtilities.getWindowAncestor(panel)).dispose();
+
+            }else{
+                JOptionPane.showMessageDialog(panel,"Incorrect Email or Password or Maybe Account Doesnot Exists!","Error", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+
+        });
+
         JButton Googlelogin = new JButton();
         Googlelogin.setBounds(490,400,225,30);
         Googlelogin.setOpaque(false);
         Googlelogin.setContentAreaFilled(false);
         Googlelogin.setBorderPainted(false);
         Googlelogin.addActionListener(e -> System.out.println("Google Login Clicked"));
+
+        JButton RedirectToSignup = new JButton();
+        RedirectToSignup.setBounds(620,480,60,30);
+        RedirectToSignup.setOpaque(false);
+        RedirectToSignup.setContentAreaFilled(false);
+        RedirectToSignup.setBorderPainted(false);
+        RedirectToSignup.addActionListener(e->{
+
+
+            Signup signupScreen = new Signup();
+            ((Window) SwingUtilities.getWindowAncestor(panel)).dispose();
+
+
+        });
+
+
+        panel.add(password);
+        panel.add(email);
         panel.add(login);
         panel.add(Googlelogin);
+        panel.add(RedirectToSignup);
+
         // Add the panel to the frame
         add(panel);
 
@@ -53,9 +91,6 @@ public class Login extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Login());
-    }
 }
 
 
