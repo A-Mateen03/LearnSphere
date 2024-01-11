@@ -45,8 +45,8 @@ public class Login extends JFrame {
             DatabaseConnectivity db = new DatabaseConnectivity();
             if(db.authUser(enteredEmail,passwordStr)){
 
-                JOptionPane.showMessageDialog(panel,"Login Successfully!","Success", JOptionPane.INFORMATION_MESSAGE);
-
+//                JOptionPane.showMessageDialog(panel,"Login Successfully!","Success", JOptionPane.INFORMATION_MESSAGE);
+                UserProfile userProfile = new UserProfile(enteredEmail);
                 ((Window) SwingUtilities.getWindowAncestor(panel)).dispose();
 
             }else{

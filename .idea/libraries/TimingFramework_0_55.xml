@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TimingFramework-0.55">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../BASIC SOFTWARE/mysql-connector-j-8.2.0/TimingFramework-0.55.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Signup extends JFrame {
-
     public Signup() {
         setTitle("Create a new account to LearnSphere");
         setSize(1236, 769);
@@ -57,7 +56,9 @@ public class Signup extends JFrame {
                 DatabaseConnectivity db = new DatabaseConnectivity();
                 if(db.createUser(enteredEmail,passwordStr)) {
                     JOptionPane.showMessageDialog(panel,"Account Created Successfully!","Success", JOptionPane.INFORMATION_MESSAGE);
-                    Login RedirectToLogin = new Login();
+//                    Login RedirectToLogin = new Login();
+                    SelectUserScreen su = new SelectUserScreen();
+                    su.setEmail(enteredEmail);
                     ((Window) SwingUtilities.getWindowAncestor(panel)).dispose();
                 }
 
